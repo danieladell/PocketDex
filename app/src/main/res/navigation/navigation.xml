@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/profile_id"
+    tools:ignore="UnusedNavigation">
+
+    <fragment
+        android:id="@+id/profile_id"
+        android:name="org.ieselcaminas.daniel.proyectoclase.profile.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profileFragment_to_dexFragment"
+            app:destination="@id/pokedex_id" />
+        <action
+            android:id="@+id/action_profileFragment_to_calculatorFragment"
+            app:destination="@id/calculator_id" />
+        <action
+            android:id="@+id/action_profile_id_to_teamFragment"
+            app:destination="@id/team_id" />
+    </fragment>
+    <fragment
+        android:id="@+id/info_id"
+        android:name="org.ieselcaminas.daniel.proyectoclase.dexInfo.DexInfo"
+        android:label="{name} Pokedex Entry"
+        tools:layout="@layout/dex_info_fragment" >
+        <argument
+            android:name="id"
+            app:argType="long" />
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <argument
+            android:name="image"
+            app:argType="string" />
+        <argument
+            android:name="weight"
+            app:argType="float" />
+        <argument
+            android:name="height"
+            app:argType="float" />
+        <argument
+            android:name="description"
+            app:argType="string" />
+        <argument
+            android:name="type1"
+            app:argType="string" />
+        <argument
+            android:name="type2"
+            app:argType="string" />
+        <argument
+            android:name="idd"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/pokedex_id"
+        android:name="org.ieselcaminas.daniel.proyectoclase.dex.DexFragment"
+        android:label="Kanto Pokedex"
+        tools:layout="@layout/dex_fragment">
+        <action
+            android:id="@+id/action_dexFragment_to_dexInfo"
+            app:destination="@+id/info_id"
+            app:enterAnim="@anim/fragment_fade_enter" />
+        <action
+            android:id="@+id/action_dexFragment_to_calculatorFragment"
+            app:destination="@id/calculator_id" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/calculator_id"
+        android:name="org.ieselcaminas.daniel.proyectoclase.calculator.CalculatorFragment"
+        android:label="Stats Calculator"
+        tools:layout="@layout/calculator_fragment" />
+    <fragment
+        android:id="@+id/team_id"
+        android:name="org.ieselcaminas.daniel.proyectoclase.teambuilder.TeamFragment"
+        android:label="team_fragment"
+        tools:layout="@layout/team_fragment" />
+
+</navigation>

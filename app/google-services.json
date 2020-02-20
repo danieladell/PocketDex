@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "430169103585",
+    "firebase_url": "https://pokedex-allgen.firebaseio.com",
+    "project_id": "pokedex-allgen",
+    "storage_bucket": "pokedex-allgen.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:430169103585:android:3f503cd4db6023f3e7aba0",
+        "android_client_info": {
+          "package_name": "org.ieselcaminas.daniel.proyectoclase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "430169103585-f0l1crbva96514hgjlvtt2jdu821kj50.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.ieselcaminas.daniel.proyectoclase",
+            "certificate_hash": "be4a9e064dc37f40d40a89441fc4e464b47e821e"
+          }
+        },
+        {
+          "client_id": "430169103585-40rpp44l20o65je5og2qgi55v5ljfgk1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.ieselcaminas.daniel.proyectoclase",
+            "certificate_hash": "b8e2e6a2ee48e5edaf3f1c794a64411ca8605436"
+          }
+        },
+        {
+          "client_id": "430169103585-c8qvvupa4fbvvo4oqhlb78masqicorut.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4MXCXs09CfzqFnkDy6lcJPX54tIKjcn0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "430169103585-c8qvvupa4fbvvo4oqhlb78masqicorut.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
