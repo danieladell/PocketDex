@@ -1,7 +1,5 @@
 package org.ieselcaminas.daniel.proyectoclase
 
-import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.net.toUri
@@ -10,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import org.ieselcaminas.daniel.proyectoclase.data.Species
+import org.ieselcaminas.daniel.proyectoclase.data.Stats
 import org.ieselcaminas.daniel.proyectoclase.dex.DexAdapter
 
 @BindingAdapter("imageUrl")
@@ -38,4 +37,22 @@ fun TextView.setIdString(id: Long) {
     id.let {
         text = "#" + id
     }
+}
+
+@BindingAdapter("setBaseStat")
+fun TextView.setBaseStat(data: List<Stats>, string: String, type: String) {
+    data.let {
+        for (i in it) {
+            if (i.species == string) {
+                when(type) {
+                    "atk" -> {text = i.atk.toString()}
+                    "def" -> {text = i.dfs.toString()}
+                    "spatk" -> {text = i.sp_atk.toString()}
+                    "spdef" -> {text = i.sp_dfs.toString()}
+                    "spd" -> {text = i.spd.toString()}
+                }
+            }
+        }
+    }
+
 }
