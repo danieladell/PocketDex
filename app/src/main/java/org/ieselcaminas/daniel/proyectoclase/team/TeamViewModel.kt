@@ -34,7 +34,7 @@ class TeamViewModel: ViewModel() {
         fireData.getTeamData().observeForever {
             val list = ArrayList<Team>()
             list.add(Team("1", "hola", ArrayList()))
-            _teams.value = list
+            _teams.value = it
 
         }
     }

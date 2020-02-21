@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentChange
+import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -36,6 +37,41 @@ class FirestoreData {
         val mutableLiveData = MutableLiveData<MutableList<Team>>()
         val listData = mutableListOf<Team>()
 
+        firebaseDB.collection("teams").whereEqualTo(FieldPath.documentId(), userId).addSnapshotListener { snapshots, ex ->
+            for(dc in snapshots!!.documentChanges) {
+                val document = dc.document
+
+                when (dc.type) {
+                    DocumentChange.Type.ADDED -> {
+                        val id_team = document.getString("id_team")!!
+                        val name = document.getString("team_name")!!
+
+                        listData.add(Team(id_team, name, ArrayList()))
+                        //getTeamMembersData(id_team)
+                    }
+                    DocumentChange.Type.MODIFIED -> {
+                        val id_stat = document.getString("id_team")!!
+                        val name = document.getString("team_name")!!
+
+                        listData[listData.indexOf(listData.find { document.id == it.id })] =
+                            Team(id_stat, name, ArrayList())
+                    }
+                    DocumentChange.Type.REMOVED -> {
+                        listData.removeAt(listData.indexOf(listData.find { document.id == it.id}))
+                    }
+                }
+            }
+            Log.i("TEST", listData[0].name)
+            mutableLiveData.value = listData
+        }
+        return mutableLiveData
+    }
+
+
+/*    fun getTeamData(): MutableLiveData<MutableList<Team>> {
+        val mutableLiveData = MutableLiveData<MutableList<Team>>()
+        val listData = mutableListOf<Team>()
+
         firebaseDB.collection("user").document(userId).collection("teams").addSnapshotListener { snapshots, ex ->
             for(dc in snapshots!!.documentChanges) {
                 val document = dc.document
@@ -53,20 +89,19 @@ class FirestoreData {
                         val name = document.getString("team_name")!!
 
                         listData[listData.indexOf(listData.find { document.id == it.id })] =
-                            Team(id_stat, name, getTeamMembersData(id_stat))
+                            Team(id_stat, name, ArrayList())
                     }
                     DocumentChange.Type.REMOVED -> {
                         listData.removeAt(listData.indexOf(listData.find { document.id == it.id}))
                     }
                 }
             }
-            //Log.i("TEST", listData[0].name)
             mutableLiveData.value = listData
         }
         return mutableLiveData
-    }
+    }*/
 
-    private fun getTeamMembersData(id: String): List<TeamMember> {
+ /*   private fun getTeamMembersData(id: String): List<TeamMember> {
         var listTeamMember = ArrayList<TeamMember>()
         val listData = ArrayList<TeamMember>()
 
@@ -110,7 +145,7 @@ class FirestoreData {
             listTeamMember = listData
         }
         return listTeamMember
-    }
+    } */
 
     fun getStats(): MutableLiveData<MutableList<Stats>> {
         val mutableLiveData = MutableLiveData<MutableList<Stats>>()
