@@ -23,7 +23,7 @@
             android:layout_weight="1"
             android:background="@drawable/loginback"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:listData="@{dexViewModel.species}"
+            app:listDataDex="@{dexViewModel.species}"
             app:spanCount="3"
             tools:listitem="@layout/dex_layout">
 

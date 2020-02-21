@@ -49,7 +49,7 @@ class DexFragment : Fragment() {
                 val type1: String = it.type1
                 val type2: String = it.type2
                 this.findNavController()
-                    .navigate(DexFragmentDirections.actionDexFragmentToDexInfo(id_species, name, image, weight, height, description, type2, type1, idD))
+                .navigate(DexFragmentDirections.actionDexFragmentToDexInfo(id_species, name, image, weight, height, description, type2, type1, idD))
 
                 dexViewModel.displaySpeciesDetailsComplete()
             }

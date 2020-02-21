@@ -7,6 +7,6 @@ import kotlinx.android.parcel.Parcelize
 data class Team(
     val id: String,
     val name: String,
-    val species: List<TeamMember>
+    val members: List<TeamMember>
 ): Parcelable
 

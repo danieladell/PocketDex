@@ -11,6 +11,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import org.ieselcaminas.daniel.proyectoclase.data.Species
 import org.ieselcaminas.daniel.proyectoclase.data.Stats
+import org.ieselcaminas.daniel.proyectoclase.data.Team
+import org.ieselcaminas.daniel.proyectoclase.data.TeamMember
 
 
 class FirestoreData {
@@ -28,6 +30,86 @@ class FirestoreData {
         firebaseDB.collection("users").document(userId).set(user)
             .addOnSuccessListener { Log.d(TAG, "DocumentSnapshot successfully written!") }
             .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
+    }
+
+    fun getTeamData(): MutableLiveData<MutableList<Team>> {
+        val mutableLiveData = MutableLiveData<MutableList<Team>>()
+        val listData = mutableListOf<Team>()
+
+        firebaseDB.collection("user").document(userId).collection("teams").addSnapshotListener { snapshots, ex ->
+            for(dc in snapshots!!.documentChanges) {
+                val document = dc.document
+
+                when (dc.type) {
+                    DocumentChange.Type.ADDED -> {
+                        val id_team = document.getString("id_team")!!
+                        val name = document.getString("team_name")!!
+
+                        listData.add(Team(id_team, name, ArrayList()))
+                                //getTeamMembersData(id_team)
+                    }
+                    DocumentChange.Type.MODIFIED -> {
+                        val id_stat = document.getString("id_team")!!
+                        val name = document.getString("team_name")!!
+
+                        listData[listData.indexOf(listData.find { document.id == it.id })] =
+                            Team(id_stat, name, getTeamMembersData(id_stat))
+                    }
+                    DocumentChange.Type.REMOVED -> {
+                        listData.removeAt(listData.indexOf(listData.find { document.id == it.id}))
+                    }
+                }
+            }
+            //Log.i("TEST", listData[0].name)
+            mutableLiveData.value = listData
+        }
+        return mutableLiveData
+    }
+
+    private fun getTeamMembersData(id: String): List<TeamMember> {
+        var listTeamMember = ArrayList<TeamMember>()
+        val listData = ArrayList<TeamMember>()
+
+        firebaseDB.collection("users").document(userId).collection("teams").document(id).collection("teammembers").addSnapshotListener { snapshots, ex ->
+            for(dc in snapshots!!.documentChanges) {
+                val document = dc.document
+
+                when (dc.type) {
+                    DocumentChange.Type.ADDED -> {
+                        val idD = document.id
+                        val id_team = document.getString("id_team")!!
+                        val name = document.getString("name")!!
+                        val ability = document.getString("ability")!!
+                        val evs = document.getString("evs")!!
+                        val item = document.getString("item")!!
+                        val moves = document.getString("moves")!!
+
+                        val movesSplitted = moves.split(";")
+
+                        listData.add(TeamMember(idD, id_team, name, ability, evs, item, movesSplitted))
+                    }
+                    DocumentChange.Type.MODIFIED -> {
+                        val idD = document.id
+                        val id_team = document.getString("id_team")!!
+                        val name = document.getString("name")!!
+                        val ability = document.getString("ability")!!
+                        val evs = document.getString("evs")!!
+                        val item = document.getString("item")!!
+                        val moves = document.getString("moves")!!
+
+                        val movesSplitted = moves.split(";")
+
+                        listData[listData.indexOf(listData.find { document.id == it.idD })] =
+                            TeamMember(idD, id_team, name, ability, evs, item, movesSplitted)
+                    }
+                    DocumentChange.Type.REMOVED -> {
+                        listData.removeAt(listData.indexOf(listData.find { document.id == it.idD}))
+                    }
+                }
+            }
+            listTeamMember = listData
+        }
+        return listTeamMember
     }
 
     fun getStats(): MutableLiveData<MutableList<Stats>> {

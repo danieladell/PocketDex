@@ -8,9 +8,9 @@
 
     <fragment
         android:id="@+id/profile_id"
-        android:name="org.ieselcaminas.daniel.proyectoclase.profile.ProfileFragment"
+        android:name="org.ieselcaminas.daniel.proyectoclase.team.TeamFragment"
         android:label="Profile"
-        tools:layout="@layout/fragment_profile">
+        tools:layout="@layout/fragment_team">
         <action
             android:id="@+id/action_profileFragment_to_dexFragment"
             app:destination="@id/pokedex_id" />
@@ -18,8 +18,8 @@
             android:id="@+id/action_profileFragment_to_calculatorFragment"
             app:destination="@id/calculator_id" />
         <action
-            android:id="@+id/action_profile_id_to_teamFragment"
-            app:destination="@id/team_id" />
+            android:id="@+id/action_profile_id_to_teamInfoFragment"
+            app:destination="@id/id_team_info" />
     </fragment>
     <fragment
         android:id="@+id/info_id"
@@ -75,8 +75,20 @@
         tools:layout="@layout/calculator_fragment" />
     <fragment
         android:id="@+id/team_id"
-        android:name="org.ieselcaminas.daniel.proyectoclase.teambuilder.TeamFragment"
-        android:label="team_fragment"
-        tools:layout="@layout/team_fragment" />
+        android:name="org.ieselcaminas.daniel.proyectoclase.teambuilder.TeamCreatorFragment"
+        android:label="Teambuilder"
+        tools:layout="@layout/team_creator_fragment" />
+    <fragment
+        android:id="@+id/id_team_info"
+        android:name="org.ieselcaminas.daniel.proyectoclase.teaminfo.TeamInfoFragment"
+        android:label="Team Info"
+        tools:layout="@layout/team_info_fragment">
+        <action
+            android:id="@+id/action_teamInfoFragment_to_team_id"
+            app:destination="@id/team_id" />
+        <argument
+            android:name="team"
+            app:argType="org.ieselcaminas.daniel.proyectoclase.data.Team" />
+    </fragment>
 
 </navigation>
