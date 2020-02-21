@@ -77,7 +77,14 @@
         android:id="@+id/team_id"
         android:name="org.ieselcaminas.daniel.proyectoclase.teambuilder.TeamCreatorFragment"
         android:label="Teambuilder"
-        tools:layout="@layout/team_creator_fragment" />
+        tools:layout="@layout/team_creator_fragment" >
+        <argument
+            android:name="teamMember"
+            app:argType="org.ieselcaminas.daniel.proyectoclase.data.TeamMember" />
+        <action
+            android:id="@+id/action_team_id_to_id_team_info"
+            app:destination="@id/id_team_info" />
+    </fragment>
     <fragment
         android:id="@+id/id_team_info"
         android:name="org.ieselcaminas.daniel.proyectoclase.teaminfo.TeamInfoFragment"
@@ -87,8 +94,8 @@
             android:id="@+id/action_teamInfoFragment_to_team_id"
             app:destination="@id/team_id" />
         <argument
-            android:name="team"
-            app:argType="org.ieselcaminas.daniel.proyectoclase.data.Team" />
+            android:name="id_team"
+            app:argType="string" />
     </fragment>
 
 </navigation>

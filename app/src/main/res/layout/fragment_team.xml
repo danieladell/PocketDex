@@ -20,19 +20,35 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/team_mini_layout"
-            app:listDataTeams="@{item.teams}" />
+            app:listDataTeams="@{item.teams}"
+            tools:listitem="@layout/team_mini_layout" />
 
-        <Button
-            android:id="@+id/add_button"
-            android:layout_width="104dp"
-            android:layout_height="48dp"
-            android:text="add" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="149dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/add_button"
+                android:layout_width="104dp"
+                android:layout_height="48dp"
+                android:text="add" />
+
+            <EditText
+                android:id="@+id/team_name_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="New team name"
+                android:inputType="textPersonName" />
+        </LinearLayout>
 
         <Button
             android:id="@+id/deleteAll_button"
             android:layout_width="104dp"
             android:layout_height="48dp"
             android:text="Delete All" />
+
     </LinearLayout>
 </layout>

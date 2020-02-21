@@ -1,4 +1,4 @@
-package org.ieselcaminas.daniel.proyectoclase
+package org.ieselcaminas.daniel.proyectoclase.data
 
 enum class Nature{
     ADAMANT, BASHFUL, BOLD, BRAVE, CALM, CAREFUL, DOCILE, GENTLE, HARDY,

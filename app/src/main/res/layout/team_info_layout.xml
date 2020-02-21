@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
             name="item"
             type="org.ieselcaminas.daniel.proyectoclase.data.TeamMember" />
     </data>
 
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.cardview.widget.CardView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -17,12 +17,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/team_textname"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@{item.id_team}" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -33,13 +27,8 @@
                 android:id="@+id/image_species"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:srcCompat="@tools:sample/avatars[3]" />
-
-            <TextView
-                android:id="@+id/species_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{item.name}" />
+                app:srcCompat="@drawable/iconapp"
+                tools:srcCompat="@drawable/iconapp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -47,28 +36,39 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/ability_text"
-                    android:layout_width="match_parent"
+                    android:id="@+id/species_name"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{item.ability}" />
+                    android:text="@{item.name}"
+                    tools:text="Dragonite" />
+
+                <TextView
+                    android:id="@+id/ability_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{item.ability}"
+                    tools:text="Levitate" />
 
                 <TextView
                     android:id="@+id/evs_text"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{item.evs}" />
+                    android:text="@{item.evs}"
+                    tools:text="0;0;0;0;0;0" />
 
                 <TextView
                     android:id="@+id/item_text"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{item.item}" />
+                    android:text="@{item.item}"
+                    tools:text="Life Orb" />
 
                 <TextView
                     android:id="@+id/moves_text"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{item.moves.get(0)}" />
+                    app:setMoves="@{item.moves}"
+                    tools:text="Fly;Rage;Fire Fang;Double Team" />
             </LinearLayout>
 
         </LinearLayout>

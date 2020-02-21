@@ -1,5 +1,6 @@
 package org.ieselcaminas.daniel.proyectoclase
 
+import android.annotation.SuppressLint
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.net.toUri
@@ -10,8 +11,10 @@ import com.bumptech.glide.request.RequestOptions
 import org.ieselcaminas.daniel.proyectoclase.data.Species
 import org.ieselcaminas.daniel.proyectoclase.data.Stats
 import org.ieselcaminas.daniel.proyectoclase.data.Team
+import org.ieselcaminas.daniel.proyectoclase.data.TeamMember
 import org.ieselcaminas.daniel.proyectoclase.dex.DexAdapter
 import org.ieselcaminas.daniel.proyectoclase.team.TeamMiniAdapter
+import org.ieselcaminas.daniel.proyectoclase.teaminfo.TeamInfoAdapter
 
 @BindingAdapter("imageUrl")
 fun bindImage(imgView: ImageView, imgUrl: String?) {
@@ -44,7 +47,25 @@ fun bindRecyclerTeams(recyclerView: RecyclerView, data: List<Team>?) {
 @BindingAdapter("idString")
 fun TextView.setIdString(id: Long) {
     id.let {
-        text = "#" + id
+        text = "#$id"
+    }
+}
+
+@BindingAdapter("listDataTeamMember")
+fun bindRecyclerInfoTeams(recyclerView: RecyclerView, data: List<TeamMember>?) {
+    val adapter: TeamInfoAdapter = recyclerView.adapter as TeamInfoAdapter
+    adapter.submitList(data)
+    adapter.notifyDataSetChanged()
+}
+
+@BindingAdapter("setMoves")
+fun TextView.setMoves(moves: List<String>) {
+    moves.let {
+        var s = ""
+        for (i in it) {
+            s += i+"\n"
+        }
+        text = s
     }
 }
 

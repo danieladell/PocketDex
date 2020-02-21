@@ -6,28 +6,37 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 
 import org.ieselcaminas.daniel.proyectoclase.R
+import org.ieselcaminas.daniel.proyectoclase.databinding.TeamCreatorFragmentBinding
 
 class TeamCreatorFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = TeamCreatorFragment()
-    }
-
     private lateinit var viewModel: TeamCreatorViewModel
+    private lateinit var viewModelFactory: TeamCreatorViewModelFactory
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.team_creator_fragment, container, false)
+        val binding = TeamCreatorFragmentBinding.inflate(inflater)
+
+        val application = requireNotNull(this.activity).application
+
+        binding.lifecycleOwner = this
+
+        val teamMember = TeamCreatorFragmentArgs.fromBundle(arguments!!).teamMember
+
+        viewModelFactory = TeamCreatorViewModelFactory(teamMember, application)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(TeamCreatorViewModel::class.java)
+
+        binding.item = viewModel
+
+        return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(TeamCreatorViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
+
 
 }

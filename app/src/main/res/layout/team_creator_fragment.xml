@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="item"
+            type="org.ieselcaminas.daniel.proyectoclase.teambuilder.TeamCreatorViewModel" />
+    </data>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,13 +16,15 @@
         android:id="@+id/autoCompleteTextView"
         android:layout_width="214dp"
         android:layout_height="wrap_content"
-        android:hint="Pokemon name" />
+        android:text="@{item.member.name}"
+        android:hint="Pokemon name"/>
 
     <EditText
         android:id="@+id/editText"
         android:layout_width="214dp"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:text="@{item.member.ability}"
         android:hint="Ability"
         android:inputType="textPersonName" />
 
@@ -25,6 +33,7 @@
         android:layout_width="214dp"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:text="@{item.member.item}"
         android:hint="Item"
         android:inputType="textPersonName" />
 
@@ -45,7 +54,7 @@
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0" />
+                android:text="@{item.member.evs}" />
         </TableRow>
 
         <TableRow
@@ -140,6 +149,7 @@
         android:layout_width="214dp"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:text="@{item.member.moves[0]}"
         android:hint="Move 1"
         android:inputType="textPersonName" />
 
@@ -148,6 +158,7 @@
         android:layout_width="214dp"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:text="@{item.member.moves[1]}"
         android:hint="Move2"
         android:inputType="textPersonName" />
 
@@ -156,6 +167,7 @@
         android:layout_width="214dp"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:text="@{item.member.moves[2]}"
         android:hint="Move 3"
         android:inputType="textPersonName" />
 
@@ -164,6 +176,7 @@
         android:layout_width="214dp"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:text="@{item.member.moves[3]}"
         android:hint="Move 4"
         android:inputType="textPersonName" />
 
@@ -174,3 +187,4 @@
         android:text="ADD" />
 
 </LinearLayout>
+</layout>

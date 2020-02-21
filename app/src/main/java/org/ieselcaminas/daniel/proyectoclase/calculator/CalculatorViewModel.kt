@@ -1,13 +1,12 @@
 package org.ieselcaminas.daniel.proyectoclase.calculator
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
-import org.ieselcaminas.daniel.proyectoclase.Nature
+import org.ieselcaminas.daniel.proyectoclase.data.Nature
 import org.ieselcaminas.daniel.proyectoclase.data.Stats
 import org.ieselcaminas.daniel.proyectoclase.firebase.FirestoreData
 import java.util.*
