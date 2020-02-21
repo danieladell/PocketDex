@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -32,8 +33,51 @@ class FirestoreData {
             .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
     }
 
-    fun setMember() {
+    fun updateMember(id: String, teamMember: TeamMember) {
+        var moves = ""
 
+        for((counter, i) in teamMember.moves.withIndex()) {
+            moves += if(counter == teamMember.moves.size-1) {
+                i
+            }else {
+                "$i;"
+            }
+        }
+        firebaseDB.collection("teammembers").document(id).update("name", teamMember.name)
+            .addOnSuccessListener {
+                Log.d(TAG, "DocumentSnapshot successfully updated!")
+            }
+            .addOnFailureListener { e ->
+                Log.w(TAG, "Error updating document", e)
+            }
+        firebaseDB.collection("teammembers").document(id).update("ability", teamMember.ability)
+            .addOnSuccessListener {
+                Log.d(TAG, "DocumentSnapshot successfully updated!")
+            }
+            .addOnFailureListener { e ->
+                Log.w(TAG, "Error updating document", e)
+            }
+        firebaseDB.collection("teammembers").document(id).update("item", teamMember.item)
+            .addOnSuccessListener {
+                Log.d(TAG, "DocumentSnapshot successfully updated!")
+            }
+            .addOnFailureListener { e ->
+                Log.w(TAG, "Error updating document", e)
+            }
+        firebaseDB.collection("teammembers").document(id).update("evs", teamMember.evs)
+            .addOnSuccessListener {
+                Log.d(TAG, "DocumentSnapshot successfully updated!")
+            }
+            .addOnFailureListener { e ->
+                Log.w(TAG, "Error updating document", e)
+            }
+        firebaseDB.collection("teammembers").document(id).update("moves", moves)
+            .addOnSuccessListener {
+                Log.d(TAG, "DocumentSnapshot successfully updated!")
+            }
+            .addOnFailureListener { e ->
+                Log.w(TAG, "Error updating document", e)
+            }
     }
 
     fun createTeam(team_name: String) {

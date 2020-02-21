@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
             name="item"
             type="org.ieselcaminas.daniel.proyectoclase.teambuilder.TeamCreatorViewModel" />
     </data>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".teambuilder.TeamCreatorFragment" >
 
     <AutoCompleteTextView
-        android:id="@+id/autoCompleteTextView"
+        android:id="@+id/editName"
         android:layout_width="214dp"
         android:layout_height="wrap_content"
         android:text="@{item.member.name}"
         android:hint="Pokemon name"/>
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/editAbility"
         android:layout_width="214dp"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -29,7 +29,7 @@
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/editItem"
         android:layout_width="214dp"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -54,7 +54,7 @@
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{item.member.evs}" />
+                android:text="0" />
         </TableRow>
 
         <TableRow
@@ -145,7 +145,7 @@
         android:text="Moves" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/editMove1"
         android:layout_width="214dp"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -154,7 +154,7 @@
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/editMove2"
         android:layout_width="214dp"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -163,7 +163,7 @@
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/editMove3"
         android:layout_width="214dp"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -172,7 +172,7 @@
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/editText6"
+        android:id="@+id/editMove4"
         android:layout_width="214dp"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -181,7 +181,7 @@
         android:inputType="textPersonName" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/add_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ADD" />
