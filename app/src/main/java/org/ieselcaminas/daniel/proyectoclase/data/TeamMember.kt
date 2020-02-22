@@ -9,7 +9,7 @@ data class TeamMember(
     val id_team: String,
     val name: String,
     val ability: String,
-    val evs: String,
+    val evs: List<String>,
     val item: String,
     val moves: List<String>
 ): Parcelable

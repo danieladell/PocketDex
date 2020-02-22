@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">PocketDex</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_login">Sign in</string>
     <string name="prompt_email">Email</string>
@@ -12,4 +11,41 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="base_stats">Base stats</string>
+    <string name="iv_s">Iv\'s</string>
+    <string name="hp">HP</string>
+    <string name="atk">ATK</string>
+    <string name="def">DEF</string>
+    <string name="sp_atk">SP.ATK</string>
+    <string name="_0">0</string>
+    <string name="sp_def">SP.DEF</string>
+    <string name="spd">SPD</string>
+    <string name="nature">Nature</string>
+    <string name="level">Level</string>
+    <string name="_100">100</string>
+    <string name="calculate">Calculate</string>
+    <string name="calculator_text">Pokémon have a fixed, permanent score from 0 to 31 for each stat that affects how good that stat can ever get. This calculator will figure out that score (called a \"gene\" or, more obtusely, an \"IV\") for you, so you can discard the unworthy. It\'s more accurate for higher-level Pokémon, so it\'s helpful to go into a level 100 wifi battle with someone and check your Pokémon\'s stats from there. EVS = 0</string>
+    <string name="weight">Weight:</string>
+    <string name="height">Height:</string>
+    <string name="species_image">species_image</string>
+    <string name="pokemon_name">Pokemon name</string>
+    <string name="ability">Ability</string>
+    <string name="item">Item</string>
+    <string name="_510_evs_s_max">(510 Evs\'s MAX)</string>
+    <string name="hp_ev_s">HP Ev\'s</string>
+    <string name="atk_ev_s">ATK Ev\'s</string>
+    <string name="def_ev_s">DEF Ev\'s</string>
+    <string name="sp_atk_ev_s">SP.ATK Ev\'s</string>
+    <string name="sp_def_ev_s">SP.DEF Ev\'s</string>
+    <string name="spd_ev_s">SPD Ev\'s</string>
+    <string name="moves">Moves</string>
+    <string name="move_1">Move 1</string>
+    <string name="move2">Move2</string>
+    <string name="move_3">Move 3</string>
+    <string name="move_4">Move 4</string>
+    <string name="add">ADD</string>
+    <string name="login">LOGIN</string>
+    <string name="new_team_name">New team name</string>
+    <string name="pocketdex">PocketDex</string>
+    <string name="hp_natk_ndef_nsp_atk_nsp_def_nspd">HP\nATK\nDEF\nSP.ATK\nSP.DEF\nSPD</string>
 </resources>

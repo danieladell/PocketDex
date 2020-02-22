@@ -3,9 +3,7 @@ package org.ieselcaminas.daniel.proyectoclase.calculator
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
+import kotlinx.coroutines.*
 import org.ieselcaminas.daniel.proyectoclase.data.Nature
 import org.ieselcaminas.daniel.proyectoclase.data.Stats
 import org.ieselcaminas.daniel.proyectoclase.firebase.FirestoreData
@@ -32,13 +30,15 @@ class CalculatorViewModel : ViewModel() {
     }
 
     private fun getStatsBySpecies() {
-        fireData.getStats().observeForever {
-            _stats.value = it
-            val species = arrayListOf<String>()
-            for(i in it) {
-                species.add(i.species)
-            }
-            _speciesName.value = species
+        uiScope.launch {
+                fireData.getStats().observeForever {
+                    _stats.value = it
+                    val species = arrayListOf<String>()
+                    for (i in it) {
+                        species.add(i.species)
+                    }
+                    _speciesName.value = species
+                }
         }
     }
 

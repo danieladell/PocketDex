@@ -12,20 +12,22 @@
         android:layout_width="423dp"
         android:layout_height="195dp"
         android:background="@color/common_google_signin_btn_text_dark_disabled"
-        android:scaleType="fitXY"
+        android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/backrec" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="289dp"
         android:layout_height="51dp"
         android:layout_marginBottom="72dp"
-        android:text="Pokedex Kanto"
+        android:background="@color/common_google_signin_btn_text_light_pressed"
+        android:text="@string/pocketdex"
         android:textAlignment="center"
-        android:textColor="#000000"
+        android:textColor="#FFFFFF"
         android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"

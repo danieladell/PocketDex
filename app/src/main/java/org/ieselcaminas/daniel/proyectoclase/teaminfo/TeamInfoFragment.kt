@@ -5,19 +5,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import org.ieselcaminas.daniel.proyectoclase.R
 
 import org.ieselcaminas.daniel.proyectoclase.databinding.TeamInfoFragmentBinding
-import org.ieselcaminas.daniel.proyectoclase.team.TeamFragmentDirections
+import org.ieselcaminas.daniel.proyectoclase.firebase.FirestoreData
 
 class TeamInfoFragment : Fragment() {
 
     private lateinit var viewModel: TeamInfoViewModel
     private lateinit var adapter: TeamInfoAdapter
     private lateinit var viewModelFactory: TeamInfoViewModelFactory
+    private val fireData = FirestoreData()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,7 +49,16 @@ class TeamInfoFragment : Fragment() {
                 viewModel.displayTeamMemberDetailsComplete()
             }
         })
+        binding.deleteButton.setOnClickListener {
+           delete(teamMembersId)
+        }
+
         return binding.root
+    }
+
+    private fun delete(id: String) {
+        fireData.delete(id)
+        this.findNavController().navigateUp()
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

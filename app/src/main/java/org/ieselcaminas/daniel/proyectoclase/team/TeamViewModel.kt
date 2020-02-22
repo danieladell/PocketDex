@@ -1,17 +1,13 @@
 package org.ieselcaminas.daniel.proyectoclase.team
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
+import kotlinx.coroutines.*
 import org.ieselcaminas.daniel.proyectoclase.data.Team
-import org.ieselcaminas.daniel.proyectoclase.data.TeamMember
 import org.ieselcaminas.daniel.proyectoclase.firebase.FirestoreData
 
-class TeamViewModel: ViewModel() {
+class TeamViewModel : ViewModel() {
 
     private val fireData = FirestoreData()
 
@@ -31,9 +27,10 @@ class TeamViewModel: ViewModel() {
     }
 
     private fun getTeamsFirebase() {
-        fireData.getTeamData().observeForever {
-            _teams.value = it
-
+        uiScope.launch {
+                fireData.getTeamData().observeForever {
+                    _teams.value = it
+            }
         }
     }
 

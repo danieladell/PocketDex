@@ -69,6 +69,17 @@ fun TextView.setMoves(moves: List<String>) {
     }
 }
 
+@BindingAdapter("setEvs")
+fun TextView.setEvs(evs: List<String>) {
+    evs.let {
+        var s = ""
+        for(i in it) {
+            s += i+"\n"
+        }
+        text = s
+    }
+}
+
 //WIP
 //@BindingAdapter("setBaseStat")
 //fun TextView.setBaseStat(data: List<Stats>, string: String, type: String) {

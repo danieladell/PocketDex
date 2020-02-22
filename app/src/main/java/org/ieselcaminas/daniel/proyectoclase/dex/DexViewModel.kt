@@ -25,9 +25,10 @@ class DexViewModel : ViewModel() {
     }
 
     private fun getSpeciesFirebase() {
-        fireData.getSpecies().observeForever {
-            //Log.i("test", it[0].name)
-            _species.value = it
+        uiScope.launch {
+                fireData.getSpecies().observeForever {
+                    _species.value = it
+                }
         }
     }
 

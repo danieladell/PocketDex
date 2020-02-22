@@ -16,6 +16,7 @@
             android:id="@+id/linear_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/fui_bgGoogle"
             android:orientation="vertical">
 
             <ImageView
@@ -24,7 +25,7 @@
                 android:layout_height="219dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="32dp"
-                android:contentDescription="species_image"
+                android:contentDescription="@string/species_image"
                 app:imageUrl="@{infoViewModel.specieDetail.image}" />
 
             <TextView
@@ -79,7 +80,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
-                    android:text="Weight: "
+                    android:text="@string/weight"
                     android:textStyle="bold" />
 
                 <TextView
@@ -94,7 +95,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
-                    android:text="Height: "
+                    android:text="@string/height"
                     android:textStyle="bold" />
 
                 <TextView
@@ -104,19 +105,33 @@
                     android:text="@{Float.toString(infoViewModel.specieDetail.height)}" />
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/description"
+            <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginBottom="48dp"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:text="@{infoViewModel.specieDetail.description}"
-                android:textSize="18sp" />
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="32dp"
+                app:cardBackgroundColor="@color/common_google_signin_btn_text_light_pressed"
+                app:cardCornerRadius="8dp">
+
+                <TextView
+                    android:id="@+id/description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="#00FFFFFF"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:text="@{infoViewModel.specieDetail.description}"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp" />
+            </androidx.cardview.widget.CardView>
 
         </LinearLayout>
     </ScrollView>

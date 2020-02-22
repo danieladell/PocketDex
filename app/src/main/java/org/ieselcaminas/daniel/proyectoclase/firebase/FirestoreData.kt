@@ -3,6 +3,7 @@ package org.ieselcaminas.daniel.proyectoclase.firebase
 import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FirebaseFirestore
@@ -33,13 +34,30 @@ class FirestoreData {
             .addOnFailureListener { e -> Log.w(TAG, "Error writing document", e) }
     }
 
+    fun delete(id_team: String) {
+        firebaseDB.collection("teams").document(id_team).delete().addOnSuccessListener {  }.addOnFailureListener {  }
+        firebaseDB.collection("teammembers").whereEqualTo("id_team", id_team).get().addOnSuccessListener {
+            for(documents in it) {
+                firebaseDB.collection("teammembers").document(documents.id).delete().addOnSuccessListener {  }.addOnFailureListener {  }
+            }
+        }.addOnFailureListener {  }
+    }
+
     fun updateMember(id: String, teamMember: TeamMember) {
         var moves = ""
+        var evs = ""
 
-        for((counter, i) in teamMember.moves.withIndex()) {
-            moves += if(counter == teamMember.moves.size-1) {
+        for ((counter, i) in teamMember.moves.withIndex()) {
+            moves += if (counter == teamMember.moves.size - 1) {
                 i
-            }else {
+            } else {
+                "$i;"
+            }
+        }
+        for ((counter, i) in teamMember.evs.withIndex()) {
+            evs += if (counter == teamMember.evs.size - 1) {
+                i
+            } else {
                 "$i;"
             }
         }
@@ -64,7 +82,7 @@ class FirestoreData {
             .addOnFailureListener { e ->
                 Log.w(TAG, "Error updating document", e)
             }
-        firebaseDB.collection("teammembers").document(id).update("evs", teamMember.evs)
+        firebaseDB.collection("teammembers").document(id).update("evs", evs)
             .addOnSuccessListener {
                 Log.d(TAG, "DocumentSnapshot successfully updated!")
             }
@@ -87,6 +105,7 @@ class FirestoreData {
         )
         firebaseDB.collection("teams").add(data).addOnSuccessListener {
             Log.d(TAG, "DocumentSnapshot written with ID: ${it.id}")
+            setIdTeam(it.id)
             createTeamMembers(it.id)
 
         }.addOnFailureListener { e ->
@@ -100,7 +119,7 @@ class FirestoreData {
                 "id_team" to idTeam,
                 "name" to "",
                 "ability" to "",
-                "evs" to "",
+                "evs" to "0;0;0;0;0;0",
                 "item" to "",
                 "moves" to "",
                 "user" to userId
@@ -126,12 +145,23 @@ class FirestoreData {
 
     }
 
+    private fun setIdTeam(id: String) {
+        firebaseDB.collection("team").document(id).update("id_team", id)
+            .addOnSuccessListener {
+                Log.d(TAG, "DocumentSnapshot successfully updated!")
+            }
+            .addOnFailureListener { e ->
+                Log.w(TAG, "Error updating document", e)
+            }
+
+    }
+
     fun getTeamData(): MutableLiveData<MutableList<Team>> {
         val mutableLiveData = MutableLiveData<MutableList<Team>>()
         val listData = mutableListOf<Team>()
 
         firebaseDB.collection("teams").whereEqualTo("user", userId)
-            .addSnapshotListener { snapshots, ex ->
+            .addSnapshotListener { snapshots, _ ->
                 for (dc in snapshots!!.documentChanges) {
                     val document = dc.document
 
@@ -155,7 +185,6 @@ class FirestoreData {
                         }
                     }
                 }
-                Log.i("TEST", listData[0].name)
                 mutableLiveData.value = listData
             }
         return mutableLiveData
@@ -166,7 +195,7 @@ class FirestoreData {
         val listData = ArrayList<TeamMember>()
 
         firebaseDB.collection("teammembers").whereEqualTo("user", userId)
-            .whereEqualTo("id_team", id).addSnapshotListener { snapshots, ex ->
+            .whereEqualTo("id_team", id).addSnapshotListener { snapshots, _ ->
                 for (dc in snapshots!!.documentChanges) {
                     val document = dc.document
 
@@ -181,6 +210,7 @@ class FirestoreData {
                             val moves = document.getString("moves")!!
 
                             val movesSplitted = moves.split(";")
+                            val evsSplitted = evs.split(";")
 
                             listData.add(
                                 TeamMember(
@@ -188,7 +218,7 @@ class FirestoreData {
                                     id_team,
                                     name,
                                     ability,
-                                    evs,
+                                    evsSplitted,
                                     item,
                                     movesSplitted
                                 )
@@ -204,9 +234,18 @@ class FirestoreData {
                             val moves = document.getString("moves")!!
 
                             val movesSplitted = moves.split(";")
+                            val evsSplitted = evs.split(";")
 
                             listData[listData.indexOf(listData.find { document.id == it.idD })] =
-                                TeamMember(idD, id_team, name, ability, evs, item, movesSplitted)
+                                TeamMember(
+                                    idD,
+                                    id_team,
+                                    name,
+                                    ability,
+                                    evsSplitted,
+                                    item,
+                                    movesSplitted
+                                )
                         }
                         DocumentChange.Type.REMOVED -> {
                             listData.removeAt(listData.indexOf(listData.find { document.id == it.idD }))
@@ -222,7 +261,7 @@ class FirestoreData {
         val mutableLiveData = MutableLiveData<MutableList<Stats>>()
         val listData = mutableListOf<Stats>()
 
-        firebaseDB.collection("stats").orderBy("id").addSnapshotListener { snapshots, ex ->
+        firebaseDB.collection("stats").orderBy("id").addSnapshotListener { snapshots, _ ->
             for (dc in snapshots!!.documentChanges) {
                 val document = dc.document
 
@@ -282,7 +321,7 @@ class FirestoreData {
         val mutableLiveData = MutableLiveData<MutableList<Species>>()
         val listData = mutableListOf<Species>()
 
-        firebaseDB.collection("species").orderBy("id").addSnapshotListener { snapshots, ex ->
+        firebaseDB.collection("species").orderBy("id").addSnapshotListener { snapshots, _ ->
             for (dc in snapshots!!.documentChanges) {
                 val document = dc.document
 

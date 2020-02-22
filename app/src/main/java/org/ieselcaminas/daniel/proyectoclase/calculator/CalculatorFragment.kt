@@ -35,7 +35,7 @@ class CalculatorFragment : Fragment() {
 
         viewModel.stats.observe(viewLifecycleOwner, Observer {
             binding.speciesAutocomplete.onItemClickListener = AdapterView.OnItemClickListener{
-                    parent,view,position,id->
+                    parent, _, position, _ ->
                 val selectedItem = parent.getItemAtPosition(position).toString()
                 for(i in it) {
                     if (i.species == selectedItem) {

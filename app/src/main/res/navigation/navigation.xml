@@ -9,7 +9,7 @@
     <fragment
         android:id="@+id/profile_id"
         android:name="org.ieselcaminas.daniel.proyectoclase.team.TeamFragment"
-        android:label="Profile"
+        android:label="Team's"
         tools:layout="@layout/fragment_team">
         <action
             android:id="@+id/action_profileFragment_to_dexFragment"

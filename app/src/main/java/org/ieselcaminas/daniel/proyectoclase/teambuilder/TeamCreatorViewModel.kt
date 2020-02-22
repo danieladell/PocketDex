@@ -4,11 +4,14 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import kotlinx.coroutines.*
 import org.ieselcaminas.daniel.proyectoclase.data.TeamMember
 
 
 class TeamCreatorViewModel(val member: TeamMember, val application: Application) : ViewModel() {
 
+    private val viewModelJob = Job()
+    private val uiScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
     private val _teamMember = MutableLiveData<TeamMember>()
     val teamMember: LiveData<TeamMember>
@@ -19,6 +22,13 @@ class TeamCreatorViewModel(val member: TeamMember, val application: Application)
     }
 
     private fun setDataInLayout() {
-        _teamMember.value = member
+        uiScope.launch {
+                _teamMember.value = member
+            }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
     }
 }

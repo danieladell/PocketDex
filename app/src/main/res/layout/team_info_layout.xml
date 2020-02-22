@@ -11,9 +11,9 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="14dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="14dp"
         android:layout_marginBottom="8dp"
         android:orientation="vertical"
         app:cardBackgroundColor="@color/common_google_signin_btn_text_light_focused"
@@ -31,10 +31,10 @@
 
                 <ImageView
                     android:id="@+id/image_species"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="72dp"
+                    android:layout_height="101dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
                     app:srcCompat="@drawable/poke_icon" />
@@ -42,31 +42,55 @@
                 <LinearLayout
                     android:layout_width="93dp"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="6dp"
                     android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/species_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:layout_marginBottom="2dp"
                         android:text="@{item.name}"
                         android:textColor="#FFFFFF"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         tools:text="Dragonite" />
 
+                    <View
+                        android:id="@+id/divider"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="4dp"
+                        android:background="@color/fui_linkColor" />
+
                     <TextView
                         android:id="@+id/ability_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="2dp"
+                        android:layout_marginBottom="4dp"
                         android:text="@{item.ability}"
                         android:textColor="#FFFFFF"
                         tools:text="Levitate" />
+
+                    <View
+                        android:id="@+id/divider2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="2dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="4dp"
+                        android:background="@color/fui_linkColor" />
 
                     <TextView
                         android:id="@+id/item_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:layout_marginTop="6dp"
                         android:text="@{item.item}"
                         android:textColor="#FFFFFF"
                         tools:text="Life Orb" />
@@ -74,14 +98,16 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="165dp"
+                    android:layout_width="170dp"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="4dp">
+                    android:layout_marginTop="6dp">
 
                     <TextView
                         android:id="@+id/moves_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginTop="10dp"
                         android:textColor="#FFFFFF"
                         app:setMoves="@{item.moves}"
                         tools:text="Fly\nRage\nFire Fang\nDouble Team" />
@@ -91,17 +117,22 @@
                         android:layout_width="24dp"
                         android:layout_height="match_parent"
                         android:layout_marginStart="6dp"
-                        android:text="@{item.evs}"
+                        android:layout_marginTop="2dp"
                         android:textColor="#FFFFFF"
+                        app:setEvs="@{item.evs}"
                         tools:text="0\n0\n0\n0\n0\n0" />
 
                     <TextView
-                        android:id="@+id/textView12"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:id="@+id/evs_graph"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginTop="2dp"
                         android:layout_weight="1"
+                        android:text="@string/hp_natk_ndef_nsp_atk_nsp_def_nspd"
                         android:textColor="#FFFFFF"
-                        tools:text="HP\nATK\nDEF\nSP.ATK\nSP.DEF\nSPD" />
+                        android:textSize="14sp"
+                        android:textStyle="bold"/>
                 </LinearLayout>
 
             </LinearLayout>
